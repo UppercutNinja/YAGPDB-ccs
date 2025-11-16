@@ -15,7 +15,7 @@
 {{end}}
 
 {{$members := getMembers}}
-{{$membersInRoles := sdict "veilrunners" cslice "riftlings" cslice "scouts" cslice "operatives" cslice "seekers" cslice "lances" cslice "relays" cslice "threaders" cslice "controllers" cslice "overseers" cslice "marshals" cslice "wardens" cslice}}
+{{$membersInRoles := sdict "veilrunners" cslice "riftlings" cslice "chasers" cslice "operatives" cslice "seekers" cslice "lances" cslice "piercers" cslice "threaders" cslice "controllers" cslice "overseers" cslice "marshals" cslice "wardens" cslice}}
 {{range $members}}
     {{if in .Roles 1375381774204665917}}
         {{$currentUsers := $membersInRoles.veilrunners}}
@@ -29,7 +29,7 @@
     {{else if in .Roles 1375436671948165143}}
         {{$currentUsers := $membersInRoles.scouts}}
         {{$currentUsers = $currentUsers.Append .User.ID}}
-        {{$membersInRoles.Set "scouts" $currentUsers}}
+        {{$membersInRoles.Set "chasers" $currentUsers}}
     {{else if in .Roles 1375378464336773142}}
         {{$currentUsers := $membersInRoles.operatives}}
         {{$currentUsers = $currentUsers.Append .User.ID}}
@@ -45,7 +45,7 @@
     {{else if in .Roles 1375378281078984704}}
         {{$currentUsers := $membersInRoles.relays}}
         {{$currentUsers = $currentUsers.Append .User.ID}}
-        {{$membersInRoles.Set "relays" $currentUsers}}
+        {{$membersInRoles.Set "piercers" $currentUsers}}
     {{else if in .Roles 1375436353202032660}}
         {{$currentUsers := $membersInRoles.threaders}}
         {{$currentUsers = $currentUsers.Append .User.ID}}
@@ -71,10 +71,10 @@
 
 {{$personnelEmbed := sdict "title" "Task Force Iota-4 | Personnel dossier" "color" 0x650678}}
 {{if .CmdArgs}}
-    {{$rankRoles := cslice "riftling" "scout" "operative" "seeker" "lance" "relay" "threader" "controller" "overseer" "marshal" "warden"}}
+    {{$rankRoles := cslice "riftling" "chaser" "operative" "seeker" "lance" "piercer" "threader" "controller" "overseer" "marshal" "warden"}}
     {{$rank := index .CmdArgs 0 | lower}}
     {{if not (in $rankRoles $rank)}}
-        {{sendMessage nil "Available ranks: `Riftling`, `Scout`, `Operative`, `Seeker`, `Lance`, `Relay`, `Threader`, `Controller`, `Overseer`, `Marshal`, `Warden`"}}
+        {{sendMessage nil "Available ranks: `Riftling`, `Chaser`, `Operative`, `Seeker`, `Lance`, `Piercer`, `Threader`, `Controller`, `Overseer`, `Marshal`, `Warden`"}}
     {{end}}
     {{$rank = printf "%ss" $rank}}
     {{$membersInRole := cslice}}
